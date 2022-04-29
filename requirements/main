@@ -1,3 +1,4 @@
 slack-bolt  # Slack Bot Framework
 fastapi     # Webserver
 uvicorn     # ASGI for web server
+loguru      # For logging app events

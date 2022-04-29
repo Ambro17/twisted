@@ -16,6 +16,8 @@ h11==0.13.0
     # via uvicorn
 idna==3.3
     # via anyio
+loguru==0.6.0
+    # via -r requirements/main
 pydantic==1.9.0
     # via fastapi
 slack-bolt==1.13.0
