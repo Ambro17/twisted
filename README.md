@@ -26,5 +26,10 @@ just run
 ### Locally
 0. Create a virtualenv with python3.10 with your preferred choice
 1. Install dev and main dependencies (dev inherits from main so it will install all you need)
-`just install`
-2. `just start`
+```
+just install
+```
+2. Run the server
+```
+just start
+```
