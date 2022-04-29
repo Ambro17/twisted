@@ -1,17 +1,17 @@
 # Slack integrations
 
 ## Prerequisites
-0. Install just, our task runner with
+0. Install [just](https://github.com/casey/just), our task runner with
 ```
 brew install just
 ```
 
-1. Ensure you have the app secrets
+1. Fill the app secrets with the real values
 ```
-cp .env.sample .env
+cp .env.sample .env # And then replace by real values
 ```
 
-2. Now load your .env file as you prefer but ensure the variables defined in it get exported into your shell. Personally i use direnv plus an envrc file with `dotenv` as its content to load variables from .env
+2. Now load your .env file as you prefer but ensure the variables defined in it get exported into your shell. Personally i use direnv plus an `.envrc` file with `dotenv` as its content to load variables from .env
 
 3. Check variables are available
 ```
