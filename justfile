@@ -18,6 +18,9 @@ alias runit := run
 run: build check_secrets_exist
     docker run -it --rm --env-file .env -p 3000:3000 twisted 
 
+start: check_secrets_exist
+    bash start.sh
+
 check_secrets_exist:
     #!/usr/bin/env python3
     import os

@@ -4,6 +4,8 @@ RUN pip install -U pip wheel setuptools
 
 WORKDIR /app
 
+COPY start.sh start.sh
+
 COPY requirements/ requirements/
 RUN pip install -r requirements/main.txt
 
@@ -14,4 +16,4 @@ COPY twisted/ twisted/
 RUN echo $APP_PORT
 
 
-CMD uvicorn twisted.server:api --reload --port ${APP_PORT} --host 0.0.0.0
+CMD ["/bin/bash", "start.sh"]
