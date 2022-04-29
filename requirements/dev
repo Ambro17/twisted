@@ -1,0 +1,5 @@
+-r main.txt
+pip-tools   # For dependency management
+pre-commit  # To enforce style rules
+
+
