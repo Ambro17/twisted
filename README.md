@@ -10,7 +10,9 @@ brew install just
 ```
 cp .env.sample .env
 ```
+
 2. Now load your .env file as you prefer but ensure the variables defined in it get exported into your shell. Personally i use direnv plus an envrc file with `dotenv` as its content to load variables from .env
+
 3. Check variables are available
 ```
 just check_secrets_exist
