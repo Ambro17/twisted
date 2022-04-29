@@ -2,8 +2,8 @@
 set dotenv-load := true
 
 lockdeps:
-    python3 -m pip-compile requirements/main
-    python3 -m pip-compile requirements/dev
+    pip-compile requirements/main
+    pip-compile requirements/dev
 
 install:
     pip-sync requirements/dev.txt
@@ -12,11 +12,11 @@ build:
     docker build . -t twisted
 
 enter: build
-    docker run -it --rm --env-file .env -p 3000:3000 twisted /bin/bash 
+    docker run -it --rm --env-file .env -p 3000:3000 -v $PWD/twisted:/app/twisted twisted /bin/bash 
 
 alias runit := run
 run: build check_secrets_exist
-    docker run -it --rm --env-file .env -p 3000:3000 twisted 
+    docker run -it --rm --env-file .env -p 3000:3000 -v $PWD/twisted:/app/twisted twisted 
 
 start: check_secrets_exist
     APP_PORT=3000 bash start.sh
