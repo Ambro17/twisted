@@ -4,6 +4,8 @@
 0. Install just, our task runner with
 ```
 brew install just
+```
+
 1. Ensure you have the app secrets
 ```
 cp env.sample .env
