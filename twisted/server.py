@@ -10,7 +10,7 @@ from slack_bolt.adapter.fastapi import SlackRequestHandler as SlackToFastApiAdap
 from twisted.slack_api import slack_app
 
 
-app_handler = SlackToFastApiAdapter(slack_app)
+request_handler = SlackToFastApiAdapter(slack_app)
 api = FastAPI()
 
 
@@ -21,4 +21,4 @@ def home():
 
 @api.post("/slack/events")
 async def endpoint(req: Request):
-    return await app_handler.handle(req)
+    return await request_handler.handle(req)

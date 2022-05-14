@@ -15,5 +15,3 @@ def handle_app_mentions(body):
     logger.debug(body)
 
 SocketModeHandler(slack_app, os.environ["SLACK_APP_TOKEN"]).start()
-
-
