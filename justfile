@@ -8,6 +8,8 @@ lockdeps:
 install:
     pip-sync requirements/dev.txt
 
+refresh: lockdeps install
+
 build:
     docker build . -t twisted
 
