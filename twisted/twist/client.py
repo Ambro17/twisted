@@ -19,7 +19,7 @@ class TwistClient:
                 channel_id=channel_id or self.channel,
                 title=title,
                 content=body,
-                send_as_integration=send_as_integration,   # REQUIRES app oauth token. Comment out if you've a personal token!!!
+                send_as_integration=send_as_integration,
             ),
             headers={'Authorization': f'Bearer {self.token}'}
         )
