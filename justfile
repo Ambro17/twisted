@@ -19,7 +19,13 @@ start: check_secrets_exist
 check_secrets_exist:
     #!/usr/bin/env python3
     import os
-    envs = ['SLACK_BOT_TOKEN', 'SLACK_SIGNING_SECRET', 'SLACK_APP_TOKEN', 'TWIST_OAUTH_TOKEN']
+    envs = [
+        'SLACK_BOT_TOKEN', 
+        'SLACK_SIGNING_SECRET', 
+        'SLACK_APP_TOKEN', 
+        'TWIST_OAUTH_TOKEN',
+        'GITHUB_TOKEN',
+    ]
     for env in envs:
         assert os.getenv(env), f"Missing required {env!r} environment variable"
 
