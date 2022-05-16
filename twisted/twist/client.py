@@ -5,21 +5,13 @@ from twisted.config import TWIST_OAUTH_TOKEN
 
 
 class TwistClient:
+    WORKSPACE_ID = '34022'
 
     def __init__(self, token, channel=568598) -> None:
         self.token = token
         self.channel = channel
 
-    def login(self, username, password):
-        resp = requests.post(
-            'https://api.twist.com/api/v3/users/login',
-            json=dict(email=username, password=password)
-        )
-        body = resp.json()
-        self.token = body['token']
-        return self.token
-
-    def create_thread(self, title, body, channel_id=None, send_as_integration=True):
+    def create_thread(self, title, body, channel_id=None, send_as_integration=True) -> str:
         resp = requests.post(
             'https://api.twist.com/api/v3/threads/add',
             json=dict(
@@ -30,10 +22,8 @@ class TwistClient:
             ),
             headers={'Authorization': f'Bearer {self.token}'}
         )
-        return resp.json()
-
+        body = resp.json()
+        return f"https://twist.com/a/{self.WORKSPACE_ID}/ch/{self.channel}/t/{body['id']}/"
 
 
 cli = TwistClient(TWIST_OAUTH_TOKEN)
-b = cli.create_thread('This was created automatically', 'and this too')
-print(b)
