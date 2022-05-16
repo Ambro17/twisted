@@ -24,6 +24,3 @@ class TwistClient:
         )
         body = resp.json()
         return f"https://twist.com/a/{self.WORKSPACE_ID}/ch/{self.channel}/t/{body['id']}/"
-
-
-cli = TwistClient(TWIST_OAUTH_TOKEN)
