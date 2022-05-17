@@ -73,3 +73,7 @@ class GithubClient:
         except KeyError:
             logger.error('Error creating discussion', body)
             raise self.ApiException(f"Couldn't create new discussion.\nMutation: {mutation}\nResponse:{body}",)
+
+
+def get_client(token=GITHUB_TOKEN):
+    return GithubClient(token)

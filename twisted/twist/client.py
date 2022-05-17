@@ -34,3 +34,7 @@ class TwistClient:
             headers={'Authorization': f'Bearer {self.token}'}
         )
         assert resp.status_code == 200, resp.content
+
+
+def get_client(token=TWIST_OAUTH_TOKEN):
+    return TwistClient(token)
