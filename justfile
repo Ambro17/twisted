@@ -16,6 +16,9 @@ sync: lockdeps install
 start: check_secrets_exist
     APP_PORT=3000 bash start.sh
 
+start_in_socket_mode: check_secrets_exist
+    python twisted/socket_app.py
+
 check_secrets_exist:
     #!/usr/bin/env python3
     import os

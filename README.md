@@ -21,8 +21,9 @@ just check_secrets_exist
 ## Setup
 ### With docker
 ```
-just run
+just runit
 ```
+
 ### Locally
 0. Create a virtualenv with python3.10 with your preferred choice
 1. Install dev and main dependencies (dev inherits from main so it will install all you need)
@@ -31,5 +32,5 @@ just install
 ```
 2. Run the server
 ```
-just start
+just start_in_socket_mode
 ```
