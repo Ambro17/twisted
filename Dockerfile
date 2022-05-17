@@ -8,14 +8,14 @@ COPY start.sh start.sh
 COPY pyproject.toml pyproject.toml
 
 COPY requirements/ requirements/
+COPY twisted/ twisted/
 RUN pip install -r requirements/main.txt
 
 ENV APP_PORT ${APP_PORT:-3000}
 
-COPY twisted/ twisted/
 RUN pip install -e .
 
 RUN echo $APP_PORT
 
 
-CMD ["/bin/bash", "start.sh"]
+CMD ["python", "twisted/socket_app.py"]
