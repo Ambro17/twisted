@@ -1,0 +1,19 @@
+[build-system]
+build-backend = "flit_core.buildapi"
+requires = ["flit_core >=3.2,<4"]
+
+[project]
+name = "twisted"
+description = "API Integrations with slack as a gateway"
+version = "1.0.0"
+authors = [
+    { name = "Nahuel Ambrosini", email = "ambro17.1@gmail.com" }
+]
+dependencies = [
+    "slack-bolt",  # Slack Bot Framework
+    "fastapi",     # Webserver
+    "uvicorn",     # ASGI for web server
+    "loguru",      # For logging app events
+    "requests",    # To do api calls
+    "loguru",      # For logging without complexity
+]
