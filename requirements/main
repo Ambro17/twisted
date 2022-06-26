@@ -4,3 +4,4 @@ uvicorn     # ASGI for web server
 loguru      # For logging app events
 requests    # To do api calls
 loguru      # For logging without complexity
+boto3       # To call aws secrets service

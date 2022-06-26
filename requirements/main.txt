@@ -8,6 +8,12 @@ anyio==3.5.0
     # via starlette
 asgiref==3.5.0
     # via uvicorn
+boto3==1.24.17
+    # via -r requirements/main
+botocore==1.27.17
+    # via
+    #   boto3
+    #   s3transfer
 certifi==2021.10.8
     # via requests
 charset-normalizer==2.0.12
@@ -22,12 +28,22 @@ idna==3.3
     # via
     #   anyio
     #   requests
+jmespath==1.0.1
+    # via
+    #   boto3
+    #   botocore
 loguru==0.6.0
     # via -r requirements/main
 pydantic==1.9.0
     # via fastapi
+python-dateutil==2.8.2
+    # via botocore
 requests==2.27.1
     # via -r requirements/main
+s3transfer==0.6.0
+    # via boto3
+six==1.16.0
+    # via python-dateutil
 slack-bolt==1.13.0
     # via -r requirements/main
 slack-sdk==3.15.2
@@ -39,8 +55,8 @@ starlette==0.17.1
 typing-extensions==4.2.0
     # via pydantic
 urllib3==1.26.9
-    # via requests
+    # via
+    #   botocore
+    #   requests
 uvicorn==0.17.6
     # via -r requirements/main
-
--e . # Install this project
