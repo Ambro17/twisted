@@ -12,6 +12,13 @@ asgiref==3.5.0
     # via
     #   -r requirements/main.txt
     #   uvicorn
+boto3==1.24.17
+    # via -r requirements/main.txt
+botocore==1.27.17
+    # via
+    #   -r requirements/main.txt
+    #   boto3
+    #   s3transfer
 certifi==2021.10.8
     # via
     #   -r requirements/main.txt
@@ -44,6 +51,11 @@ idna==3.3
     #   -r requirements/main.txt
     #   anyio
     #   requests
+jmespath==1.0.1
+    # via
+    #   -r requirements/main.txt
+    #   boto3
+    #   botocore
 loguru==0.6.0
     # via -r requirements/main.txt
 nodeenv==1.6.0
@@ -60,12 +72,23 @@ pydantic==1.9.0
     # via
     #   -r requirements/main.txt
     #   fastapi
+python-dateutil==2.8.2
+    # via
+    #   -r requirements/main.txt
+    #   botocore
 pyyaml==6.0
     # via pre-commit
 requests==2.27.1
     # via -r requirements/main.txt
+s3transfer==0.6.0
+    # via
+    #   -r requirements/main.txt
+    #   boto3
 six==1.16.0
-    # via virtualenv
+    # via
+    #   -r requirements/main.txt
+    #   python-dateutil
+    #   virtualenv
 slack-bolt==1.13.0
     # via -r requirements/main.txt
 slack-sdk==3.15.2
@@ -91,6 +114,7 @@ typing-extensions==4.2.0
 urllib3==1.26.9
     # via
     #   -r requirements/main.txt
+    #   botocore
     #   requests
 uvicorn==0.17.6
     # via -r requirements/main.txt

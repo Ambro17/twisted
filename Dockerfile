@@ -17,5 +17,4 @@ RUN pip install -e .
 
 RUN echo $APP_PORT
 
-
 CMD ["python", "twisted/socket_app.py"]
