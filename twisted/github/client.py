@@ -1,8 +1,10 @@
 """Github client that allows to open new discussions"""
 from dataclasses import dataclass
+from typing import Callable
+
 from loguru import logger
 import requests
-from twisted.config import GITHUB_TOKEN
+from twisted.config import get_config
 
 
 @dataclass(frozen=True)
@@ -75,5 +77,6 @@ class GithubClient:
             raise self.ApiException(f"Couldn't create new discussion.\nMutation: {mutation}\nResponse:{body}",)
 
 
-def get_client(token=GITHUB_TOKEN):
-    return GithubClient(token)
+def get_client(config: Callable = get_config):
+    config = config()
+    return GithubClient(config.GITHUB_TOKEN)
