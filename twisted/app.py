@@ -7,11 +7,11 @@ This design allows to change the web framework as it is uncoupled from app logic
 """
 from fastapi import FastAPI, Request
 from slack_bolt.adapter.fastapi import SlackRequestHandler as SlackToFastApiAdapter
-from twisted.slack_api import slack_app
+from twisted.slack_api import create_slack_app
 
 
 def create_app():
-    request_handler = SlackToFastApiAdapter(slack_app)
+    request_handler = SlackToFastApiAdapter(create_slack_app())
     api = FastAPI()
 
 
@@ -23,6 +23,5 @@ def create_app():
     @api.post("/slack/events")
     async def endpoint(req: Request):
         return await request_handler.handle(req)
-
 
     return api

@@ -8,8 +8,9 @@ COPY start.sh start.sh
 COPY pyproject.toml pyproject.toml
 
 COPY requirements/ requirements/
-COPY twisted/ twisted/
 RUN pip install -r requirements/main.txt
+
+COPY twisted/ twisted/
 
 ENV APP_PORT ${APP_PORT:-3000}
 
