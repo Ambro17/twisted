@@ -4,14 +4,6 @@
 #
 #    pip-compile requirements/dev
 #
-anyio==3.5.0
-    # via
-    #   -r requirements/main.txt
-    #   starlette
-asgiref==3.5.0
-    # via
-    #   -r requirements/main.txt
-    #   uvicorn
 certifi==2021.10.8
     # via
     #   -r requirements/main.txt
@@ -22,44 +14,24 @@ charset-normalizer==2.0.12
     # via
     #   -r requirements/main.txt
     #   requests
-click==8.1.3
-    # via
-    #   -r requirements/main.txt
-    #   pip-tools
-    #   uvicorn
 distlib==0.3.4
     # via virtualenv
-fastapi==0.75.2
-    # via -r requirements/main.txt
 filelock==3.6.0
     # via virtualenv
-h11==0.13.0
-    # via
-    #   -r requirements/main.txt
-    #   uvicorn
 identify==2.5.0
     # via pre-commit
 idna==3.3
     # via
     #   -r requirements/main.txt
-    #   anyio
     #   requests
 loguru==0.6.0
     # via -r requirements/main.txt
 nodeenv==1.6.0
     # via pre-commit
-pep517==0.12.0
-    # via pip-tools
-pip-tools==6.6.0
-    # via -r requirements/dev
 platformdirs==2.5.2
     # via virtualenv
 pre-commit==2.18.1
     # via -r requirements/dev
-pydantic==1.9.0
-    # via
-    #   -r requirements/main.txt
-    #   fastapi
 pyyaml==6.0
     # via pre-commit
 requests==2.27.1
@@ -72,33 +44,11 @@ slack-sdk==3.15.2
     # via
     #   -r requirements/main.txt
     #   slack-bolt
-sniffio==1.2.0
-    # via
-    #   -r requirements/main.txt
-    #   anyio
-starlette==0.17.1
-    # via
-    #   -r requirements/main.txt
-    #   fastapi
 toml==0.10.2
     # via pre-commit
-tomli==2.0.1
-    # via pep517
-typing-extensions==4.2.0
-    # via
-    #   -r requirements/main.txt
-    #   pydantic
 urllib3==1.26.9
     # via
     #   -r requirements/main.txt
     #   requests
-uvicorn==0.17.6
-    # via -r requirements/main.txt
 virtualenv==20.14.1
     # via pre-commit
-wheel==0.37.1
-    # via pip-tools
-
-# The following packages are considered to be unsafe in a requirements file:
-# pip
-# setuptools

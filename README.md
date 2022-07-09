@@ -5,8 +5,9 @@
 ```
 brew install just
 ```
+1. Install terraform cli
 
-1. Fill the app secrets with the real values
+2. Fill the app secrets with the real values
 ```
 cp .env.sample .env # And then replace by real values
 ```
@@ -34,3 +35,4 @@ just install
 ```
 just start_in_socket_mode
 ```
+

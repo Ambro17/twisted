@@ -1,7 +1,8 @@
 """Twist client that allows to open new threads"""
+from typing import Callable
 import requests
 
-from twisted.config import TWIST_OAUTH_TOKEN
+from twisted.config import get_config
 
 
 class TwistClient:
@@ -36,5 +37,6 @@ class TwistClient:
         assert resp.status_code == 200, resp.content
 
 
-def get_client(token=TWIST_OAUTH_TOKEN):
-    return TwistClient(token)
+def get_client(config: Callable = get_config):
+    config = config()
+    return TwistClient(config.TWIST_OAUTH_TOKEN)

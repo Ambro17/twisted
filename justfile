@@ -38,8 +38,8 @@ build:
     docker build . -t twisted
 
 enter: build
-    docker run -it --rm --env-file .env -p 3000:3000 -v $PWD/twisted:/app/twisted twisted /bin/bash 
+    docker run -it --rm --env-file .env -p 3000:3000 -v $PWD/twisted:/app/twisted -v $HOME/.aws:/root/.aws twisted /bin/bash
 
 runit: build check_secrets_exist
-    docker run -it --rm --env-file .env -p 3000:3000 -v $PWD/twisted:/app/twisted twisted 
+    docker run -it --rm --env-file .env -p 3000:3000 -v $PWD/twisted:/app/twisted -v $HOME/.aws:/root/.aws twisted
 
