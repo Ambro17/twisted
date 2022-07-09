@@ -11,8 +11,6 @@ authors = [
 ]
 dependencies = [
     "slack-bolt",  # Slack Bot Framework
-    "fastapi",     # Webserver
-    "uvicorn",     # ASGI for web server
     "requests",    # To do api calls
     "loguru",      # For logging without complexity
 ]
