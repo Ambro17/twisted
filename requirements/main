@@ -1,3 +1,0 @@
-slack-bolt  # Slack Bot Framework
-loguru      # For logging app events
-requests    # To do api calls

@@ -14,3 +14,7 @@ dependencies = [
     "requests",    # To do api calls
     "loguru",      # For logging without complexity
 ]
+[project.optional-dependencies]
+dev = [
+  "pytest",
+]

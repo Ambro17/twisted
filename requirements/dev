@@ -1,4 +1,0 @@
--r main.txt
-pre-commit  # To enforce style rules
-
-

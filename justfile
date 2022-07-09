@@ -4,10 +4,15 @@ set dotenv-load := true
 
 ######## Local Environment commands ########
 lockdeps:
-    pip-compile requirements/main
-    pip-compile requirements/dev
+    pip-compile -o requirements/main.txt pyproject.toml
+
+lockdepsdev:
+    pip-compile --extra=dev -o requirements/dev.txt pyproject.toml
 
 install:
+    pip-sync requirements/main.txt
+
+installdev: install
     pip-sync requirements/dev.txt
 
 sync: lockdeps install
