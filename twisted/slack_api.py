@@ -4,8 +4,7 @@ from twisted.config import get_config
 from twisted.twist.client import get_client as get_twist_client
 
 
-def create_slack_app():
-    config = get_config()
+def create_slack_app(config):
     slack_app = App(token=config.SLACK_BOT_TOKEN, signing_secret=config.SLACK_SIGNING_SECRET)
 
     @slack_app.event("reaction_added")
