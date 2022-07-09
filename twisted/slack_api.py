@@ -40,3 +40,5 @@ def create_slack_app():
             "_You're invited to follow the conversation there so everyone can voice their opinions without rush_")
 
         logger.debug(f"Thread {thread!r} was created and the channel was notified")
+
+    return slack_app

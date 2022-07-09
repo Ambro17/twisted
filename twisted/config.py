@@ -1,9 +1,5 @@
 from dataclasses import dataclass
 import os
-import json
-import boto3
-from botocore.exceptions import ClientError
-from twisted.ttl_cache import lru_cache_with_ttl
 
 
 @dataclass(frozen=True)
