@@ -3,21 +3,23 @@ from typing import Callable
 import requests
 
 from twisted.config import get_config
+from twisted.ttl_cache import lru_cache_with_ttl
 
 
 class TwistClient:
     WORKSPACE_ID = '34022'
+    CHANNEL_ID = 568598
 
-    def __init__(self, token, channel=568598) -> None:
+    def __init__(self, token, channel=CHANNEL_ID) -> None:
         self.token = token
         self.channel = channel
 
-    def create_thread(self, title, body, channel_id=None, send_as_integration=True) -> str:
+    def create_thread(self, title: str, body: str, channel_id=CHANNEL_ID, send_as_integration=True) -> str:
         """Create a thread and return its url"""
         resp = requests.post(
             'https://api.twist.com/api/v3/threads/add',
             json=dict(
-                channel_id=channel_id or self.channel,
+                channel_id=channel_id,
                 title=title,
                 content=body,
                 send_as_integration=send_as_integration,
@@ -37,6 +39,5 @@ class TwistClient:
         assert resp.status_code == 200, resp.content
 
 
-def get_client(config: Callable = get_config):
-    config = config()
+def get_client(config) -> TwistClient:
     return TwistClient(config.TWIST_OAUTH_TOKEN)

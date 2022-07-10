@@ -5,6 +5,7 @@ from typing import Callable
 from loguru import logger
 import requests
 from twisted.config import get_config
+from twisted.ttl_cache import lru_cache_with_ttl
 
 
 @dataclass(frozen=True)
@@ -43,7 +44,7 @@ class GithubClient:
         assert body.get('data'), f"Discussion was not deleted.\n{body}"
 
 
-    def create_discussion(self, title, body) -> Discussion:
+    def create_discussion(self, title: str, body: str) -> Discussion:
         """Create a discussion and returns its url"""
 
         mutation = f"""
@@ -77,6 +78,5 @@ class GithubClient:
             raise self.ApiException(f"Couldn't create new discussion.\nMutation: {mutation}\nResponse:{body}",)
 
 
-def get_client(config: Callable = get_config):
-    config = config()
+def get_client(config):
     return GithubClient(config.GITHUB_TOKEN)

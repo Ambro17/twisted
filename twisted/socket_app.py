@@ -7,7 +7,6 @@ from twisted.slack_api import create_slack_app
 def start_app():
     config = get_config()
     slack_app = create_slack_app(config)
-    print(config.SLACK_APP_TOKEN)
     socket = SocketModeHandler(slack_app, config.SLACK_APP_TOKEN)
     socket.start()
 
