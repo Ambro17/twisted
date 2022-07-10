@@ -37,7 +37,7 @@ def create_modal(title, body, action_id):
 	NEW_THREAD_MODAL = {
 		"type": "modal",
         "callback_id": action_id,
-		"title":  {"type": "plain_text", "text": "Dracarys"},
+		"title":  {"type": "plain_text", "text": "Hero"},
 		"submit": {"type": "plain_text", "text": "Submit"},
 		"close":  {"type": "plain_text", "text": "Cancel"},
 		"blocks": [

@@ -10,9 +10,9 @@ def create_slack_app(config):
     slack_app = App(token=config.SLACK_BOT_TOKEN, signing_secret=config.SLACK_SIGNING_SECRET)
 
     NEW_THREAD_ACTION_ID = 'new_twist_thread'
+    CREATE_SHORTCUT_CALLBACK_ID = 'create_twist_thread'
 
-
-    @slack_app.shortcut('create_twist_thread')
+    @slack_app.shortcut(CREATE_SHORTCUT_CALLBACK_ID)
     def show_twist_thread_modal(ack, body, message, client: WebClient):
         """Open a modal (popup) with prefilled information to create a new thread"""
         ack()
