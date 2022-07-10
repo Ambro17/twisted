@@ -4,7 +4,6 @@ RUN pip install -U pip wheel setuptools
 
 WORKDIR /app
 
-COPY start.sh start.sh
 COPY pyproject.toml pyproject.toml
 
 COPY requirements/ requirements/
