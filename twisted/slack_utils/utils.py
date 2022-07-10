@@ -37,7 +37,6 @@ def create_modal(title, body, action_id):
 	NEW_THREAD_MODAL = {
 		"type": "modal",
         "callback_id": action_id,
-#        "block_id": 'twist_modal',
 		"title":  {"type": "plain_text", "text": "Dracarys"},
 		"submit": {"type": "plain_text", "text": "Submit"},
 		"close":  {"type": "plain_text", "text": "Cancel"},

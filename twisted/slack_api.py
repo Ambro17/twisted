@@ -11,20 +11,10 @@ def create_slack_app(config):
 
     NEW_THREAD_ACTION_ID = 'new_twist_thread'
 
-    @slack_app.event("reaction_added")
-    def handle_app_mentions(event, body, say: Say):
-        """When a reaction is added, do something"""
-        logger.debug(body)
-        reaction = event['reaction']
-        if reaction == 'github':
-            say('Hey, you reacted with github emoji :github:')
-        elif reaction == 'twist2':
-            say('Hey, you reacted with twist emoji :twist2:')
-
-
 
     @slack_app.shortcut('create_twist_thread')
-    def show_twist_thread_modal(ack, body, message, say: Say, client: WebClient):
+    def show_twist_thread_modal(ack, body, message, client: WebClient):
+        """Open a modal (popup) with prefilled information to create a new thread"""
         ack()
         logger.debug(body)
         message = body.get('message', {}).get('text')
@@ -40,7 +30,8 @@ def create_slack_app(config):
 
 
     @slack_app.view(NEW_THREAD_ACTION_ID)
-    def create_twist_thread(ack, respond, body, client: WebClient):
+    def create_twist_thread(ack, body, client: WebClient):
+        """Create a twist thread based on what was submitted on the create twist message"""
         ack()
         logger.debug(body)
 
