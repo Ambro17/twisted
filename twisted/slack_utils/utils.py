@@ -55,3 +55,5 @@ def create_modal(title, body, action_id):
 	return NEW_THREAD_MODAL
     
 
+def link(text: str, link: str) -> str:
+    return f"<{link}|{text}>"
