@@ -1,11 +1,9 @@
 """Github client that allows to open new discussions"""
 from dataclasses import dataclass
-from typing import Callable
 
 from loguru import logger
 import requests
-from twisted.config import get_config
-from twisted.ttl_cache import lru_cache_with_ttl
+
 
 
 @dataclass(frozen=True)

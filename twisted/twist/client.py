@@ -1,9 +1,5 @@
 """Twist client that allows to open new threads"""
-from typing import Callable
 import requests
-
-from twisted.config import get_config
-from twisted.ttl_cache import lru_cache_with_ttl
 
 
 class TwistClient:
