@@ -51,3 +51,8 @@ run: build check_secrets_exist
 
 runit: check_secrets_exist
     docker run -it --rm --env-file .env -p 3000:3000 -v $PWD/twisted:/app/twisted -v $HOME/.aws:/root/.aws twisted
+
+updateimage:
+    # Update image name to twisted
+    docker build . -t ambro17/flask --platform=linux/amd64
+    docker push ambro17/flask:latest
