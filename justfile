@@ -30,6 +30,10 @@ check_secrets_exist:
         'SLACK_APP_TOKEN', 
         'TWIST_OAUTH_TOKEN',
         'GITHUB_TOKEN',
+        'AWS_AMAZON_KEY',
+        'AWS_AMAZON_SECRET',
+        'AWS_PROFILE',
+        'AWS_ACCOUNT',
     ]
     for env in envs:
         assert os.getenv(env), f"Missing required {env!r} environment variable"
@@ -42,6 +46,13 @@ build:
 enter: build
     docker run -it --rm --env-file .env -p 3000:3000 -v $PWD/twisted:/app/twisted -v $HOME/.aws:/root/.aws twisted /bin/bash
 
-runit: build check_secrets_exist
+run: build check_secrets_exist
     docker run -it --rm --env-file .env -p 3000:3000 -v $PWD/twisted:/app/twisted -v $HOME/.aws:/root/.aws twisted
 
+runit: check_secrets_exist
+    docker run -it --rm --env-file .env -p 3000:3000 -v $PWD/twisted:/app/twisted -v $HOME/.aws:/root/.aws twisted
+
+updateimage:
+    # Update image name to twisted
+    docker build . -t ambro17/flask --platform=linux/amd64
+    docker push ambro17/flask:latest

@@ -13,6 +13,7 @@ dependencies = [
     "slack-bolt",  # Slack Bot Framework
     "requests",    # To do api calls
     "loguru",      # For logging without complexity
+    "boto3",       # To read app secrets from secrets manager on production
 ]
 [project.optional-dependencies]
 dev = [
