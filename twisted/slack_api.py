@@ -9,6 +9,12 @@ from twisted.slack_utils.utils import create_modal, link
 def create_slack_app(config):
     slack_app = App(token=config.SLACK_BOT_TOKEN, signing_secret=config.SLACK_SIGNING_SECRET)
 
+    @slack_app.middleware
+    def log_request(client, context, payload, next):
+        logger.debug(payload)
+        next()
+
+
     NEW_THREAD_ACTION_ID = 'new_twist_thread'
     CREATE_SHORTCUT_CALLBACK_ID = 'create_twist_thread'
 

@@ -13,6 +13,7 @@ token = get_config().SLACK_SIGNING_SECRET
 """
 from contextvars import ContextVar
 from dataclasses import dataclass
+from loguru import logger
 import os
 import json
 
@@ -37,12 +38,14 @@ def get_config():
 
 def set_config(production=True) -> Config:
     if production:
+        logger.debug("Getting app config from aws")
         client = boto3.client('secretsmanager', region_name='us-east-1') 
         secrets = _read_secrets_from_aws(
             client, 
             'twisted-app-secrets'
         )
     else:
+        logger.debug("Getting app config from environment")
         secrets = dict(
             SLACK_SIGNING_SECRET=os.environ['SLACK_SIGNING_SECRET'],
             SLACK_BOT_TOKEN=os.environ['SLACK_BOT_TOKEN'],
