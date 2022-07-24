@@ -71,10 +71,12 @@ def create_slack_app(config):
         {link('Staging', 'https://us-east-1.console.aws.amazon.com/cloudwatch/home?region=us-east-1#logsV2:logs-insights$3FqueryDetail$3D$257E$2528end$257E0$257Estart$257E-3600$257EtimeType$257E$2527RELATIVE$257Eunit$257E$2527seconds$257EeditorString$257E$2527fields*20*40timestamp*0a*7c*20sort*20*40timestamp*20asc*0a*7c*20filter*20*40message*20like*20*27message*27*0a*7c*20parse*20*27*22event*22*3a*20*22*2a*22*27*20as*20event*0a*7c*20parse*20*27*22request_id*22*3a*20*22*2a*22*27*20as*20request_id*20*0a*7c*20parse*20*27*22trace_id*22*3a*20*22*2a*22*27*20as*20trace_id*20*0a*7c*20parse*20*27*3a*20*2a*27*20as*20full_message*20*0a*7c*20fields*20*40timestamp*2c*20*40logStream$257EisLiveTail$257Efalse$257EqueryId$257E$252775e66076-1a52-4068-a4f3-90e16a6b8fbc$257Esource$257E$2528$257E$2527*2faws*2fecs*2fstg-shipping-api*2fcontainer-logs$2529$2529')}       | shiphero-stg
         {link('Development', 'https://us-east-1.console.aws.amazon.com/cloudwatch/home?region=us-east-1#logsV2:logs-insights$3FqueryDetail$3D$257E$2528end$257E0$257Estart$257E-3600$257EtimeType$257E$2527RELATIVE$257Eunit$257E$2527seconds$257EeditorString$257E$2527fields*20*40timestamp*0a*7c*20sort*20*40timestamp*20asc*0a*7c*20filter*20*40message*20like*20*27message*27*0a*7c*20parse*20*27*22event*22*3a*20*22*2a*22*27*20as*20event*0a*7c*20parse*20*27*22request_id*22*3a*20*22*2a*22*27*20as*20request_id*20*0a*7c*20parse*20*27*22trace_id*22*3a*20*22*2a*22*27*20as*20trace_id*20*0a*7c*20parse*20*27*3a*20*2a*27*20as*20full_message*20*0a*7c*20fields*20*40timestamp*2c*20*40logStream$257EisLiveTail$257Efalse$257EqueryId$257E$2527efa5646f-4182-4aa9-b8b0-ede8b2558427$257Esource$257E$2528$257E$2527*2faws*2fecs*2fdev-shipping-api*2fcontainer-logs$2529$2529')} | shiphero-dev
 
+
         :aws: *ECS Clusters | AWS Account*
         {link('Production', 'https://us-east-1.console.aws.amazon.com/ecs/home?region=us-east-1#/clusters/shiphero-prod-shipping-api/services')}     | Aaron/LLC
         {link('Staging', 'https://us-east-1.console.aws.amazon.com/ecs/home?region=us-east-1#/clusters/stg-shipping-api/services')}           | shiphero-stg
         {link('Development', 'https://us-east-1.console.aws.amazon.com/ecs/home?region=us-east-1#/clusters/dev-shipping-api/services')} | shiphero-dev
+
 
         :github: *Deployment info*
         ```
@@ -83,6 +85,8 @@ def create_slack_app(config):
         Staging     | master                     | Squash and Merge | CodePipeline, on merge
         Development | _dev/servers/shipping-api  | Your choice      | Github Action, on merge
         ```
+
+
         :rocket: {link('Deploy Prod', 'https://us-east-1.console.aws.amazon.com/codesuite/codepipeline/pipelines/shiphero-prod-shipping-api-deployment/view?region=us-east-1')}
         :sentry: {link('Sentry', 'https://sentry.io/organizations/shiphero-0x/dashboard/12322/?environment=prod&project=5597506&statsPeriod=1h')}
         :honey_pot: {link('Honeycomb', 'https://ui.honeycomb.io/shiphero/datasets/shiphero-core/result/DfoiKjFRAa4?tab=traces')} 
