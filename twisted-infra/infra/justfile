@@ -1,0 +1,14 @@
+taskid:
+    #!/usr/bin/env sh
+    TASK=$(aws ecs list-tasks --cluster ambro-cluster | jq '.taskArns[0]' | cut -d "/" -f 3 | tr -d '"')
+    echo $TASK
+
+details TASKID:
+    aws ecs describe-tasks --cluster ambro-cluster --tasks {{TASKID}}
+
+enter TASKID:
+    #!/usr/bin/env sh
+    aws ecs execute-command --cluster ambro-cluster --task {{TASKID}} --container flask-app --interactive --command "bash"
+
+connect HOST:
+    telnet {{HOST}} 443
