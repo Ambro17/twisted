@@ -1,3 +1,4 @@
+import os
 from slack_bolt.adapter.socket_mode import SocketModeHandler
 from twisted.config import set_config
 from twisted.slack_api import create_slack_app
@@ -11,5 +12,5 @@ def start_app(config):
 
 if __name__ == "__main__":
     logger.info("Starting app in socket mode")
-    config = set_config()
+    config = set_config(production=not os.getenv('DEVELOPMENT'))
     start_app(config)
