@@ -22,7 +22,7 @@ output "ssh" {
     aws ecs execute-command 
     --cluster ambro-cluster 
     --task 4337b88a747548e182e479673ff7863d4 
-    --container flask-app 
+    --container twisted-app 
     --interactive 
     --command "bash"
     value = "aws ecs execute-command --cluster ${cluster_name.value} --task ID --container NAME --interactive --command 'bash'"

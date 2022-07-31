@@ -35,7 +35,7 @@ resource "aws_ecs_task_definition" "mytaskdef" {
 
     container_definitions = jsonencode([
         {
-            name      = "flask-app"
+            name      = "twisted-app"
             image     = "ambro17/twisted:production"
 
             essential = true  # If this task exits, all tasks of the service should exit transitively.
