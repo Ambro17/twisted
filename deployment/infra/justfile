@@ -1,0 +1,26 @@
+alias ssh := enter
+
+enter:
+    aws ecs execute-command --cluster ambro-cluster --task $(just taskid) --container twisted-app --interactive --command "bash"
+
+destroy:
+    terraform destroy
+
+apply:
+    terraform apply
+
+taskid:
+    #!/usr/bin/env sh
+    TASK=$(aws ecs list-tasks --cluster ambro-cluster | jq '.taskArns[0]' | cut -d "/" -f 3 | tr -d '"')
+    echo $TASK
+
+ip:
+    aws ec2 describe-network-interfaces --network-interface-ids eni-0ecab1a115b2a0d56 | | jq ".NetworkInterfaces[].Association.PublicIp"
+
+
+details:
+    aws ecs describe-tasks --cluster ambro-cluster --tasks $(just taskid)
+
+
+
+

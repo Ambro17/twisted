@@ -3,23 +3,22 @@ set dotenv-load := true
 
 
 ######## Local Environment commands ########
-lockdeps:
+lockdepsprod:
     pip-compile -o requirements/main.txt pyproject.toml
 
-lockdepsdev:
-    pip-compile --extra=dev -o requirements/dev.txt pyproject.toml
+lockdeps:
+    pip-compile -o requirements/dev.txt pyproject.toml --extra=dev
+
 
 install:
-    pip-sync requirements/main.txt
+    pip-sync requirements/dev.txt requirements/main.txt
 
-installdev: install
-    pip-sync requirements/dev.txt
 
 sync: lockdeps install
 
 ######## General commands ########
 start: check_secrets_exist
-    python twisted/socket_app.py
+    python -m twisted
 
 check_secrets_exist:
     #!/usr/bin/env python3

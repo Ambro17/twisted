@@ -18,7 +18,7 @@ ECS is complex, really. But now we have a working version and i learned a lot ab
 aws ecs execute-command 
 --cluster ambro-cluster 
 --task id 
---container flask-app 
+--container twisted-app 
 --interactive 
 --command "bash"
 ```

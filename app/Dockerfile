@@ -15,4 +15,4 @@ COPY twisted/ twisted/
 
 RUN pip install -e .
 
-CMD ["python", "twisted/socket_app.py"]
+CMD ["python", "-m", "twisted"]
