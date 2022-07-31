@@ -19,6 +19,10 @@ cp .env.sample .env # And then replace by real values
 just check_secrets_exist
 ```
 
+### Improvements
+- Add author to original twist message
+
+
 ## Setup
 ### With docker
 ```
