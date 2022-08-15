@@ -1,10 +1,11 @@
 """Twist client that allows to open new threads"""
+import os
 import requests
 
 
 class TwistClient:
     WORKSPACE_ID = '34022'
-    CHANNEL_ID = 568598
+    CHANNEL_ID = 75531
 
     def __init__(self, token, channel=CHANNEL_ID) -> None:
         self.token = token
@@ -36,4 +37,4 @@ class TwistClient:
 
 
 def get_client(config) -> TwistClient:
-    return TwistClient(config.TWIST_OAUTH_TOKEN)
+    return TwistClient(config.TWIST_OAUTH_TOKEN, channel=os.getenv('TWIST_CHANNEL'))
