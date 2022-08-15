@@ -2,24 +2,34 @@
 set dotenv-load := true
 
 
+default:
+  just --list
+
+
 ######## Local Environment commands ########
+
+# Lock prod dependencies
 lockdepsprod:
     pip-compile -o requirements/main.txt pyproject.toml
 
+# Lock dev dependencies
 lockdeps:
     pip-compile -o requirements/dev.txt pyproject.toml --extra=dev
 
-
+# Install dependencies
 install:
     pip-sync requirements/dev.txt requirements/main.txt
 
-
+# Update environment with deps
 sync: lockdeps install
 
 ######## General commands ########
+
+# Start app without docker
 start: check_secrets_exist
     python -m twisted
 
+# Check required secrets exist
 check_secrets_exist:
     #!/usr/bin/env python3
     import os
@@ -39,15 +49,20 @@ check_secrets_exist:
 
 
 ######## Docker commands ########
+
+# Build image
 build:
     docker build . -t twisted
 
+# Enter docker container
 enter: build
     docker run -it --rm --env-file .env -p 3000:3000 -v $PWD/twisted:/app/twisted -v $HOME/.aws:/root/.aws twisted /bin/bash
 
+# Run app as a container (with build)
 run: build check_secrets_exist
     docker run -it --rm --env-file .env -p 3000:3000 -v $PWD/twisted:/app/twisted -v $HOME/.aws:/root/.aws twisted
 
+# Run app ƒrom existing image (no build)
 runit: check_secrets_exist
     docker run -it --rm --env-file .env -p 3000:3000 -v $PWD/twisted:/app/twisted -v $HOME/.aws:/root/.aws twisted
 

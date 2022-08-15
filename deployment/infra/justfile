@@ -1,5 +1,8 @@
 alias ssh := enter
 
+default:
+  just --list
+
 enter:
     aws ecs execute-command --cluster ambro-cluster --task $(just taskid) --container twisted-app --interactive --command "bash"
 
