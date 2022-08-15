@@ -5,7 +5,7 @@ import requests
 
 class TwistClient:
     WORKSPACE_ID = '34022'
-    CHANNEL_ID = 599192
+    CHANNEL_ID = 212803
 
     def __init__(self, token, channel) -> None:
         self.token = token
