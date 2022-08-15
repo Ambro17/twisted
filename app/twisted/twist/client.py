@@ -5,11 +5,11 @@ import requests
 
 class TwistClient:
     WORKSPACE_ID = '34022'
-    CHANNEL_ID = 75531
+    CHANNEL_ID = 599192
 
-    def __init__(self, token, channel=CHANNEL_ID) -> None:
+    def __init__(self, token, channel) -> None:
         self.token = token
-        self.channel = channel
+        self.channel = channel or self.CHANNEL_ID
 
     def create_thread(self, title: str, body: str, channel_id=CHANNEL_ID, send_as_integration=True) -> str:
         """Create a thread and return its url"""
