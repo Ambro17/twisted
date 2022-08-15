@@ -1,5 +1,9 @@
 # Slack integrations
 
+### Improvement backlog
+- Notify created thread as a reply to the original message. Currently it's a personal message only
+
+
 ## Prerequisites
 0. Install [just](https://github.com/casey/just), our task runner with
 ```
@@ -18,9 +22,6 @@ cp .env.sample .env # And then replace by real values
 ```
 just check_secrets_exist
 ```
-
-### Improvements
-- Add author to original twist message
 
 
 ## Setup
