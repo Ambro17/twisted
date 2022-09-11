@@ -25,3 +25,10 @@ just deployment/infra/apply    # Create infra
 just deployment/infra/enter    # Enter container
 just deployment/infra/destroy  # Destroy infra
 ```
+
+
+## Release new version
+```
+just app/updateimage         # Build image with the latest changes and push it to the registry
+just deployment/infra/apply  # Use the new image to deploy a new version of the app
+```
