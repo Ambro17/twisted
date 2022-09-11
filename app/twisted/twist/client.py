@@ -20,6 +20,7 @@ class TwistClient:
                 title=title,
                 content=body,
                 send_as_integration=send_as_integration,
+                recipients=[],
             ),
             headers={'Authorization': f'Bearer {self.token}'}
         )

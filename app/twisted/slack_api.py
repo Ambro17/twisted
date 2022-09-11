@@ -10,7 +10,7 @@ def create_slack_app(config):
     slack_app = App(token=config.SLACK_BOT_TOKEN, signing_secret=config.SLACK_SIGNING_SECRET)
 
     @slack_app.middleware
-    def log_request(client, context, payload, next):
+    def log_slack_request_payload(client, context, payload, next):
         logger.debug(payload)
         next()
 
@@ -19,16 +19,26 @@ def create_slack_app(config):
     CREATE_SHORTCUT_CALLBACK_ID = 'create_twist_thread'
 
     @slack_app.shortcut(CREATE_SHORTCUT_CALLBACK_ID)
-    def show_twist_thread_modal(ack, body, message, client: WebClient):
+    def create_twist_thread_modal(ack, body, message, client: WebClient):
         """Open a modal (popup) with prefilled information to create a new thread"""
         ack()
-        logger.debug(body)
         message = body.get('message', {}).get('text')
         if not message:
             logger.debug("Error getting message from this body %s" % body)
 
-        # Show new thread modal
-        modal = create_modal(title=message[:140], body=message, action_id=NEW_THREAD_ACTION_ID)
+        channel_id = body['channel']['id']
+        timestamp = body['message_ts']
+        message_permalink = client.chat_getPermalink(channel=channel_id, message_ts=timestamp)
+
+        # Show modal to create thread with prefilled title and body
+        modal = create_modal(
+            title=message[:140], 
+            body=message, 
+            action_id=NEW_THREAD_ACTION_ID,
+            channel_id=channel_id,
+            message_timestamp=timestamp,
+            message_permalink=message_permalink['permalink'],
+        )
         client.views_open(
             trigger_id=body['trigger_id'],
             view=modal
@@ -36,27 +46,29 @@ def create_slack_app(config):
 
 
     @slack_app.view(NEW_THREAD_ACTION_ID)
-    def create_twist_thread(ack, body, client: WebClient):
+    def on_submit_create_thread(ack, body, client: WebClient):
         """Create a twist thread based on what was submitted on the create twist message"""
         ack()
-        logger.debug(body)
 
         user = body['user']['name']
-        user_id = body['user']['id']
+        channel_id, message_ts, message_link = body['view']['private_metadata'].split('|')
         response = body['view']['state']['values']
         title = response['block_title']['thread_title_action_id']['value']
         description = response['block_body']['thread_description_action_id']['value']
 
         twist = get_twist_client(config)
         
-        footer = f"\n\n_This thread was created through a slack shortcut integration by {user}_"
+        # Add link to original message in thread!
+        footer = f"\n\n_This thread was created by {user} from this slack message {message_link} via `@Hero`'s message shortcut_"
         thread = twist.create_thread(title=title, body=description + footer)
         logger.debug(f"Thread {thread!r} was created and the channel was notified")
-        client.chat_postEphemeral(
-            channel=user_id,
-            user=user_id,
-            text=f'✅ Your thread was created here {thread}'
+
+        client.chat_postMessage(
+            channel=channel_id,
+            thread_ts=message_ts,  # This creates a thread reply from the referenced message
+            text=f'✅ A twist thread was created to continue this conversation asynchronously at: {thread} :coffee:'
         )
+
 
 
     @slack_app.command('/shipping')
