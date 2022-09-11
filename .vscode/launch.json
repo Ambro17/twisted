@@ -5,7 +5,7 @@
             "name": "Run App",
             "type": "python",
             "request": "launch",
-            "program": "${workspaceFolder}/app/twisted/socket_app.py",
+            "program": "${workspaceFolder}/app/twisted/__main__.py",
             "console": "integratedTerminal",
             "justMyCode": true,
             "envFile": "${workspaceFolder}/app/.env",
