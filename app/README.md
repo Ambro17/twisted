@@ -1,9 +1,5 @@
 # Slack integrations
 
-### Improvement backlog
-- Notify created thread as a reply to the original message. Currently it's a personal message only
-
-
 ## Prerequisites
 0. Install [just](https://github.com/casey/just), our task runner with
 ```
@@ -38,6 +34,6 @@ just install
 ```
 2. Run the server
 ```
-just start_in_socket_mode
+just start
 ```
 
