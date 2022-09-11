@@ -33,7 +33,7 @@ def create_title(title):
     }
 
 
-def create_modal(title, body, action_id):
+def create_modal(title, body, action_id, channel_id, message_timestamp, message_permalink):
 	NEW_THREAD_MODAL = {
 		"type": "modal",
         "callback_id": action_id,
@@ -50,7 +50,8 @@ def create_modal(title, body, action_id):
 			},
 			create_title(title),
 			create_body(body)
-		]
+		],
+        "private_metadata": f"{channel_id}|{message_timestamp}|{message_permalink}"
 	}
 	return NEW_THREAD_MODAL
     
