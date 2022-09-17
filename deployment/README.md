@@ -13,15 +13,6 @@ ECS is complex, really. But now we have a working version and i learned a lot ab
 ## Architecture
 ![Architecture Diagram](Arch.png?raw=true)
 
-## Access via ssh to the container/task
-```bash
-aws ecs execute-command 
---cluster ambro-cluster 
---task id 
---container twisted-app 
---interactive 
---command "bash"
-```
 
 ## Improvements
 - Add VPC endpoint to database
