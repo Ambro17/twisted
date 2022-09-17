@@ -25,7 +25,6 @@ aws ecs execute-command
 
 ## Improvements
 - Review task image revision config. Should we redeploy if target didn't change?
-- Dont use latest tag on image and use twisted tag
 - Add VPC endpoint to database
 
 **Low Priority**
@@ -33,5 +32,4 @@ aws ecs execute-command
 - Deploy with availability across two zones.
 - Create private subnet?
 - Move log name to data resource and reference it on ecs file instead of roles
-- Add task id to terraform output
 - Parametrize terraform with variables

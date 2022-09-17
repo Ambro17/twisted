@@ -5,5 +5,3 @@ We want to avoid needing every user to authorize the app.
 
 # Improvements
 - Add middleware for auth (user id repo of valid users)
-
-
