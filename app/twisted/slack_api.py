@@ -2,6 +2,8 @@ from textwrap import dedent
 from loguru import logger
 from slack_sdk import WebClient
 from slack_bolt import App
+from slack_bolt.context import BoltContext
+from traceback import format_exception
 from twisted.twist.client import get_client as get_twist_client
 from twisted.slack_utils.utils import create_modal, link
 
@@ -9,8 +11,25 @@ from twisted.slack_utils.utils import create_modal, link
 def create_slack_app(config):
     slack_app = App(token=config.SLACK_BOT_TOKEN, signing_secret=config.SLACK_SIGNING_SECRET)
 
+    @slack_app.error
+    def error_handler(context: BoltContext, payload: dict, error: Exception):
+        traceback = '\n'.join(format_exception(error))
+        logger.error(f"🤕 An unexpected error happened when handling {payload=}\nError:\n{traceback}")
+        context.ack()
+        message = f"🤕 Something went wrong, can you please retry later?\n`{repr(error)}`"
+
+        # Best effort to notify user
+        try:
+            context.respond(message)
+        except Exception:
+            try:
+                context.say(message)
+            except Exception:
+                logger.error("Could not notify user of the error")
+
+
     @slack_app.middleware
-    def log_slack_request_payload(client, context, payload, next):
+    def log_slack_request_payload(payload, next):
         logger.debug(payload)
         next()
 
@@ -68,7 +87,6 @@ def create_slack_app(config):
             thread_ts=message_ts,  # This creates a thread reply from the referenced message
             text=f'✅ A twist thread was created to continue this conversation asynchronously at: {thread} :coffee:'
         )
-
 
 
     @slack_app.command('/shipping')
