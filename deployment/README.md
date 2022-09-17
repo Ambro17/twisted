@@ -24,7 +24,6 @@ aws ecs execute-command
 ```
 
 ## Improvements
-- Review task image revision config. Should we redeploy if target didn't change?
 - Add VPC endpoint to database
 
 **Low Priority**
