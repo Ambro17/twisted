@@ -25,10 +25,6 @@ sync: lockdeps install
 
 ######## General commands ########
 
-# Start app without docker
-start: check_secrets_exist
-    python -m twisted
-
 # Check required secrets exist
 check_secrets_exist:
     #!/usr/bin/env python3
@@ -61,6 +57,10 @@ enter: build
 # Run app as a container (with build)
 run: build check_secrets_exist
     docker run -it --rm --env-file .env -p 3000:3000 -v $PWD/twisted:/app/twisted -v $HOME/.aws:/root/.aws twisted
+
+# Run app locally (no docker involved)
+runlocal: check_secrets_exist
+    python -m twisted
 
 # Run app ƒrom existing image (no build)
 runit: check_secrets_exist
