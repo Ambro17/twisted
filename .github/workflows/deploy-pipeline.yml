@@ -1,0 +1,23 @@
+name: Deploy new app image into ECS
+
+on:
+  push:
+    branches: ["main"]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    # Setup environment
+    - name: "Checkout repo"
+      uses: actions/checkout@v3
+    - name: "Install just"
+      uses: extractions/setup-just@v1
+
+    # Run checks
+    - name: "Update the app Docker image"
+      run: just app/updateimage
+    - name: "Deploy new app version into AWS ECS"
+      run: just deployment/infra/apply
+  
