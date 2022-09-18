@@ -145,4 +145,6 @@ resource "aws_appautoscaling_policy" "by_memory" {
             predefined_metric_type = "ECSServiceAverageMemoryUtilization"  # Builtin metric for aws fargate tasks
         }
     }
+
+    depends_on = [aws_appautoscaling_target.ecs_target]
 }
