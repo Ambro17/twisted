@@ -11,6 +11,9 @@ from twisted.slack_utils.utils import create_modal, link
 def create_slack_app(config):
     slack_app = App(token=config.SLACK_BOT_TOKEN, signing_secret=config.SLACK_SIGNING_SECRET)
 
+    # Just to test scaling on memory usage
+    memory_leak = []
+
     @slack_app.error
     def error_handler(context: BoltContext, payload: dict, error: Exception):
         traceback = '\n'.join(format_exception(error))
@@ -91,6 +94,7 @@ def create_slack_app(config):
 
     @slack_app.command('/shipping')
     def send_shipping_info(ack, respond):
+        memory_leak.append(bytearray(400_000_000))
         ack()
         MESSAGE = dedent(
         f"""\
