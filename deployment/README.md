@@ -13,7 +13,6 @@ ECS is complex, really. But now we have a working version and i learned a lot ab
 ## Architecture
 ![Architecture Diagram](Arch.png?raw=true)
 
-
 ## Improvements
 - Add VPC endpoint to database
 
