@@ -14,7 +14,7 @@ resource "aws_ecs_cluster_capacity_providers" "providers" {
         # Only one capacity provider in a capacity provider strategy can have a base defined.
         base              = 1    # At least 1 task should run by this capacity provider
         weight            = 100  # Percentage of tasks to deploy with this strategy 
-        capacity_provider = "FARGATE_SPOT"  # By default, dont use fargate spot instances as a fallback may not be available to guarantee service availabity
+        capacity_provider = "FARGATE_SPOT"  # By default, use fargate spot instances as the service can have downtime
   }
 }
 
