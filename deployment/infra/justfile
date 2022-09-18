@@ -6,6 +6,9 @@ default:
 enter:
     aws ecs execute-command --cluster ambro-cluster --task $(just taskid) --container twisted-app --interactive --command "bash"
 
+init:
+    terraform init
+
 destroy:
     terraform destroy
 
