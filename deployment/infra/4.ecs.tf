@@ -140,7 +140,7 @@ resource "aws_appautoscaling_policy" "by_memory" {
     # If we reach 90% it will add a container. If we are below 80 for a long period of time it will go back to 1
     # Read https://nathanpeck.com/amazon-ecs-scaling-best-practices/ for more details
     target_tracking_scaling_policy_configuration {
-        target_value   = 80
+        target_value   = 50
         predefined_metric_specification {
             predefined_metric_type = "ECSServiceAverageMemoryUtilization"  # Builtin metric for aws fargate tasks
         }

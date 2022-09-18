@@ -94,7 +94,7 @@ def create_slack_app(config):
 
     @slack_app.command('/shipping')
     def send_shipping_info(ack, respond):
-        memory_leak.append(bytearray(400_000_000))
+        memory_leak.append(bytearray(512_000_000))
         ack()
         MESSAGE = dedent(
         f"""\
