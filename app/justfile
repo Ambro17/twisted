@@ -66,6 +66,10 @@ runlocal: check_secrets_exist
 runit: check_secrets_exist
     docker run -it --rm --env-file .env -p 3000:3000 -v $PWD/twisted:/app/twisted -v $HOME/.aws:/root/.aws twisted
 
+# Login to docker registry
+login:
+    docker login
+
 # Update image used for deploys
 updateimage:
     docker build . -t ambro17/twisted:production --platform=linux/amd64
