@@ -14,7 +14,7 @@ resource "aws_ecs_cluster_capacity_providers" "providers" {
         # Only one capacity provider in a capacity provider strategy can have a base defined.
         base              = 1    # At least 1 task should run by this capacity provider
         weight            = 100  # Percentage of tasks to deploy with this strategy 
-        capacity_provider = "FARGATE_SPOT"  # By default, dont use fargate spot instances as a fallback may not be available to guarantee service availabity
+        capacity_provider = "FARGATE_SPOT"  # By default, use fargate spot instances as the service can have downtime
   }
 }
 
@@ -117,4 +117,34 @@ resource "aws_security_group" "secgroup" {
 
 resource "aws_cloudwatch_log_group" "log_group" {
   name = "${aws_ecs_cluster.ambro_cluster.name}-logs"
+}
+
+# Scaling configuration resources
+resource "aws_appautoscaling_target" "ecs_target" {
+    max_capacity       = 2
+    min_capacity       = 1
+    resource_id        = "service/${aws_ecs_cluster.ambro_cluster.name}/${aws_ecs_service.service.name}"
+    scalable_dimension = "ecs:service:DesiredCount"
+    service_namespace  = "ecs"
+}
+
+resource "aws_appautoscaling_policy" "by_memory" {
+    name               = "memory-autoscaling"
+    policy_type        = "TargetTrackingScaling"
+    resource_id        = aws_appautoscaling_target.ecs_target.resource_id
+    scalable_dimension = aws_appautoscaling_target.ecs_target.scalable_dimension
+    service_namespace  = aws_appautoscaling_target.ecs_target.service_namespace
+
+
+    # Scale up or down targetting 80% cpu utilization. 
+    # If we reach 90% it will add a container. If we are below 80 for a long period of time it will go back to 1
+    # Read https://nathanpeck.com/amazon-ecs-scaling-best-practices/ for more details
+    target_tracking_scaling_policy_configuration {
+        target_value   = 80
+        predefined_metric_specification {
+            predefined_metric_type = "ECSServiceAverageMemoryUtilization"  # Builtin metric for aws fargate tasks
+        }
+    }
+
+    depends_on = [aws_appautoscaling_target.ecs_target]
 }

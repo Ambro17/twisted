@@ -18,7 +18,6 @@ ECS is complex, really. But now we have a working version and i learned a lot ab
 - Add VPC endpoint to database
 
 **Low Priority**
-- Setup and test autoscaling policies
 - Deploy with availability across two zones.
 - Create private subnet?
 - Move log name to data resource and reference it on ecs file instead of roles
