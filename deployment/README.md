@@ -14,6 +14,7 @@ ECS is complex, really. But now we have a working version and i learned a lot ab
 ![Architecture Diagram](Arch.png?raw=true)
 
 ## Improvements
+- Assume role in CI instead of referencing access keys (understand why it's best practice. Rotation?)
 - Add VPC endpoint to database
 
 **Low Priority**

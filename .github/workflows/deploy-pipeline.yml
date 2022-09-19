@@ -24,6 +24,13 @@ jobs:
       with:
         username: ${{ secrets.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_TOKEN }}
+    - name: Configure AWS Credentials
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: us-east-1
+
 
     # Initialize terraform
     - name: Initialize terraform with remote state
@@ -33,6 +40,10 @@ jobs:
     # Deploy new app version
     - name: "Update the app Docker image"
       run: just app/updateimage
-    - name: "Deploy new app version into AWS ECS"
+
+    - id: deploy
+      name: "Deploy new app version into AWS ECS"
       run: just deployment/infra/apply
-  
+    - run: echo ${{ steps.deploy.outputs.stdout }}
+    - run: echo ${{ steps.deploy.outputs.stderr }}
+    - run: echo ${{ steps.deploy.outputs.exitcode }}
