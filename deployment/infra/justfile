@@ -9,11 +9,14 @@ enter:
 init:
     terraform init
 
-destroy:
-    terraform destroy
+plan:
+    terraform plan
 
 apply:
     terraform apply
+
+destroy:
+    terraform destroy
 
 taskid:
     #!/usr/bin/env sh
