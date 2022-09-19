@@ -15,7 +15,6 @@ apply:
 destroy:
     terraform destroy
 
-
 enter:
     aws ecs execute-command --cluster ambro-cluster --task $(just _taskid) --container twisted-app --interactive --command "bash"
 
