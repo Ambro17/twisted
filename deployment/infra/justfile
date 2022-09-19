@@ -1,18 +1,24 @@
 alias ssh := enter
 
 default:
-  just --list
+  just --list --unsorted
 
-enter:
-    aws ecs execute-command --cluster ambro-cluster --task $(just taskid) --container twisted-app --interactive --command "bash"
+init:
+    terraform init
 
-destroy:
-    terraform destroy
+plan:
+    terraform plan
 
 apply:
     terraform apply
 
-taskid:
+destroy:
+    terraform destroy
+
+enter:
+    aws ecs execute-command --cluster ambro-cluster --task $(just _taskid) --container twisted-app --interactive --command "bash"
+
+_taskid:
     #!/usr/bin/env sh
     TASK=$(aws ecs list-tasks --cluster ambro-cluster | jq '.taskArns[0]' | cut -d "/" -f 3 | tr -d '"')
     echo $TASK
@@ -22,7 +28,7 @@ ip:
 
 
 details:
-    aws ecs describe-tasks --cluster ambro-cluster --tasks $(just taskid)
+    aws ecs describe-tasks --cluster ambro-cluster --tasks $(just _taskid)
 
 
 
