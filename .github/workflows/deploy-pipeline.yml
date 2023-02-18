@@ -1,10 +1,10 @@
 name: Deploy new app image into ECS
 
 on:
-  - push:
+  push:
       branches: ["main"]
   
-  - workflow_dispatch:
+  workflow_dispatch:
 
 
 jobs:
