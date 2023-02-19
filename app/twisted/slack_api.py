@@ -85,7 +85,7 @@ def create_slack_app(config):
         client.chat_postMessage(
             channel=channel_id,
             thread_ts=message_ts,  # This creates a thread reply from the referenced message
-            text=f'✅ A twist thread was created to continue this conversation asynchronously at: {thread} :coffee:'
+            text=f"✅ A {link('Twist Thread', thread)} was created in case you want to continue this conversation asynchronously :coffee:"
         )
 
 
