@@ -45,6 +45,5 @@ jobs:
     - id: deploy
       name: "Deploy new app version into AWS ECS"
       run: just deployment/infra/apply -auto-approve
-    - run: echo ${{ steps.deploy.outputs.stdout }}
-    - run: echo ${{ steps.deploy.outputs.stderr }}
-    - run: echo ${{ steps.deploy.outputs.exitcode }}
+
+    - run: echo "✅ Finished!"
