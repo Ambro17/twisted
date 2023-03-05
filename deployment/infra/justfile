@@ -3,14 +3,14 @@ alias ssh := enter
 default:
   just --list --unsorted
 
-init *kwargs:
-    terraform init
+init *flags:
+    terraform init {{flags}}
 
-plan *kwargs:
-    terraform plan
+plan *flags:
+    terraform plan {{flags}}
 
-apply *kwargs:
-    terraform apply
+apply *flags:
+    terraform apply {{flags}}
 
 destroy:
     terraform destroy
