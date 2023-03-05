@@ -34,11 +34,9 @@ jobs:
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: us-east-1
 
-
     # Initialize terraform
     - name: Initialize terraform with remote state
-      run: just deployment/infra/init
-      
+      run: just deployment/infra/init -input=false
 
     # Deploy new app version
     - name: "Update the app Docker image"
@@ -46,7 +44,7 @@ jobs:
 
     - id: deploy
       name: "Deploy new app version into AWS ECS"
-      run: just deployment/infra/apply
+      run: just deployment/infra/apply -auto-approve
     - run: echo ${{ steps.deploy.outputs.stdout }}
     - run: echo ${{ steps.deploy.outputs.stderr }}
     - run: echo ${{ steps.deploy.outputs.exitcode }}

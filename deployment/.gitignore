@@ -3,6 +3,7 @@
 **/.terraform/*
 *.tfstate
 *.tfstate.*
+*.hcl
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
