@@ -78,7 +78,7 @@ def create_slack_app(config):
         twist = get_twist_client(config)
         
         # Add link to original message in thread!
-        footer = f"\n\n_This thread was created by {user} from this slack message {message_link} via `@Hero`'s message shortcut_"
+        footer = f"\n\n_This thread was created by {user} from [this slack message]({message_link}) via `@Hero`'s message shortcut_"
         thread = twist.create_thread(title=title, body=description + footer)
         logger.debug(f"Thread {thread!r} was created and the channel was notified")
 

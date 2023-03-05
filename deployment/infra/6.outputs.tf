@@ -6,10 +6,6 @@ output "service_name" {
   value = aws_ecs_service.service.name
 }
 
-output "task_role_arn" {
-    value = aws_iam_role.task_role.arn
-}
-
 output "service_link" {
     value = "https://us-east-1.console.aws.amazon.com/ecs/home?region=us-east-1#/clusters/ambro-cluster/tasks"
 }
