@@ -1,0 +1,38 @@
+name: Remove app from remote environment
+
+on:
+  workflow_dispatch:
+
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: prod
+
+    steps:
+
+    # Setup environment
+    - name: "Checkout repo"
+      uses: actions/checkout@v3
+    - name: "Install just"
+      uses: extractions/setup-just@v1
+    - name: "Install terraform"
+      uses: hashicorp/setup-terraform@v2
+
+    # Initialize services (aws, terraform)
+    - name: Configure AWS Credentials
+      uses: aws-actions/configure-aws-credentials@v1-node16
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: us-east-1
+
+    - name: Initialize terraform with remote state
+      run: just deployment/infra/init -input=false
+
+    # Remove app infrastructure
+    - id: Remove app
+      name: "Deploy new app version into AWS ECS"
+      run: just deployment/infra/destroy -auto-approve
+
+    - run: echo "✅ Finished!"
