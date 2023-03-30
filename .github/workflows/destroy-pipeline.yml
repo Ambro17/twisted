@@ -5,7 +5,7 @@ on:
 
 
 jobs:
-  deploy:
+  destroy:
     runs-on: ubuntu-latest
     environment: prod
 
@@ -32,7 +32,7 @@ jobs:
 
     # Remove app infrastructure
     - id: Destroy
-      name: "Deploy new app version into AWS ECS"
+      name: "Remove app from AWS ECS"
       run: just deployment/infra/destroy -auto-approve
 
     - run: echo "✅ Finished!"
