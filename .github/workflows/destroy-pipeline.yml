@@ -31,7 +31,7 @@ jobs:
       run: just deployment/infra/init -input=false
 
     # Remove app infrastructure
-    - id: Remove app
+    - id: Destroy
       name: "Deploy new app version into AWS ECS"
       run: just deployment/infra/destroy -auto-approve
 
