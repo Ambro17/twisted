@@ -12,8 +12,8 @@ plan *flags:
 apply *flags:
     terraform apply {{flags}}
 
-destroy:
-    terraform destroy
+destroy *flags:
+    terraform destroy {{flags}}
 
 enter:
     aws ecs execute-command --cluster ambro-cluster --task $(just _taskid) --container twisted-app --interactive --command "bash"
